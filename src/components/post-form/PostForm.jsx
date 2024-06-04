@@ -33,7 +33,7 @@ const PostForm = ({post}) => {
       //to create a new post
       else{
         const file = data.image[0]? await services.uploadFile(data.image[0]) : null
-        const newPost  = await services.createPost({title: data.title , slug : data.slug , content: data.content ,  featuredImage : file? file.$id : undefined , userId : userData?.$id , status: "active" })
+        const newPost  = await services.createPost({title: data.title , slug : data.slug , content: data.content ,  featuredImage : (file? file.$id : undefined) , userId : userData.$id , status: "active" })
         if(newPost) navigate(`/post/${newPost.$id}`)
       }
     }
